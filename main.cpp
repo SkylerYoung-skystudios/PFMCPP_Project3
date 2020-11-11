@@ -646,10 +646,10 @@ void House::demolish( int originalWallsRemaining, int totalWalls )
 int main()
 {
     Example::main();
-    Shoe Blazer, Airforce1;
+    Shoe blazer, airforce1;
     Wurlitzer red, tan;
-    ElectricBass Jaguar, Precision;
-    City LosAngeles;
+    ElectricBass jaguar, precision;
+    City losAngeles;
     Bedroom myRoom, brothersRoom;
     Bedroom::Bed myBed;
     Kitchen cookery;
@@ -659,9 +659,18 @@ int main()
     Garage carSpot;
     House myHouse;
 
-    Jaguar.play(24);
+    jaguar.play(24);
     tan.power(true);
     frontRoom.rearange(5);
+    myShower.adjustWaterTemp(0.47f, 0.94f);
+    losAngeles.vote(26486434, 4328763);
+    cookery.clean(true);
+    myHouse.addRoom(5);
+    carSpot.parkCar(false, true, false);
+    blazer.putOn("L", false);
+    frontRoom.paintRoom(true);
+
+
 
     std::cout << "Should I clean my Room? " << (myRoom.lastCleaned > 7 ? "Yes" : "No") << "\n";
 
