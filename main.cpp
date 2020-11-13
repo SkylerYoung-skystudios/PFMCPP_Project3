@@ -233,7 +233,7 @@ struct Bedroom
         void newMatress ( std::string brand = "tempurpedic");
         void printLastInBed()
         {
-            std::cout << "Last in bed was " << lastInBed;
+            std::cout << "Last in bed was " << lastInBed << "\n";
         }
     };
     void sleepIn ( int timeAwake = 843, int timeAsleep = 98);
