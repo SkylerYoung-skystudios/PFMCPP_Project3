@@ -39,26 +39,19 @@ int main()
 
 struct Shoe
 {
+    std::string brand { "Nike" };
+    double size { 0 };
+    std::string color { "white" };
+    std::string condition { "good" };
+    std::string securingMethod { "velcro" };
     Shoe();
-    std::string brand;
-    double size;
-    std::string color;
-    std::string condition;
-    std::string securingMethod;
 
     void putOn ( std::string firstShoe = "R", bool leftFirst = true);
     void takeOff ( std::string firstShoe = "R", bool leftFirst = true );
     void throwAway ( bool donate = false );
 };
 
-Shoe::Shoe()
-{
-    brand = "Nike";
-    size = 12.5;
-    color = "white";
-    condition = "good";
-    securingMethod = "velcro";
-}
+Shoe::Shoe(){}
 
 void Shoe::putOn(std::string firstShoe, bool leftFirst) 
 {
@@ -87,7 +80,6 @@ void Shoe::throwAway(bool donate)
 
 struct Wurlitzer
 {
-    Wurlitzer();
     int volumeLevel;
     double vibratoAmount;
     std::string model;
@@ -95,21 +87,27 @@ struct Wurlitzer
     int numKeys;
     int output;
     bool on;
+    Wurlitzer();
 
     void changeVolume ( int knobPosition );
     void play ( int note = 23 );
     void power ( bool switchPosition = true );
+    void printCondition()
+    {
+       std::cout << "This Wutlizer is in " << condition << " condition\n"; 
+    }
 };
 
-Wurlitzer::Wurlitzer()
+Wurlitzer::Wurlitzer() :
+volumeLevel ( 6 ),
+vibratoAmount ( .5 ),
+model ( "200a" ),
+condition ( "good" ),
+numKeys ( 49 ),
+output ( 23 ),
+on ( false )
 {
-    volumeLevel = 6;
-    vibratoAmount = .5;
-    model = "200a";
-    condition = "good";
-    numKeys = 49;
-    output = 23;
-    on = false;
+
 }
 
 void Wurlitzer::changeVolume( int knobPosition ) 
@@ -130,32 +128,22 @@ void Wurlitzer::power( bool switchPosition )
 
 struct ElectricBass
 {
+    int numStrings = 4;
+    std::string pickup = "precision";
+    std::string brand = "fender";
+    std::string model = "precision";
+    int yearMade = 1974;
+    int output = 23;
+    int cost = 1544;
+    int timeSinceRestrung = 13;
     ElectricBass();
-    int numStrings;
-    std::string pickup;
-    std::string brand;
-    std::string model;
-    int yearMade;
-    int output;
-    int cost;
-    int timeSinceRestrung;
 
     void play ( int note =  18 );
     void sold ( int price = 1200 );
     void restring ( bool restring = true );
 };
 
-ElectricBass::ElectricBass()
-{
-    numStrings = 4;
-    pickup = "precision";
-    brand = "fender";
-    model = "precision";
-    yearMade = 1974;
-    output = 23;
-    cost = 1544;
-    timeSinceRestrung = 13;
-}
+ElectricBass::ElectricBass(){}
 
 void ElectricBass::play( int note ) 
 {
@@ -193,17 +181,7 @@ struct City
     void buildTransportation ( int cost = 2433244 );
 };
 
-City::City()
-{
-    population = 4649231;
-    size = 34.65f;
-    GDP = 65569340958.98;
-    averageAge = 43;
-    country = "New Zeland";
-    party1InCharge = true;
-    buildingsToBeRepaired = 1;
-    capital = 14414414;
-}
+City::City() : population { 4649231 }, size { 34.65f }, GDP { 65569340958.98 }, averageAge { 43 }, country { "New Zeland" }, party1InCharge { true }, buildingsToBeRepaired { 1 }, capital { 14414414 } {}
 
 void City::vote( int party1Votes, int party2Votes ) 
 {
@@ -229,47 +207,41 @@ void City::buildTransportation( int cost )
 
 struct Bedroom
 {
+    std::string name = "Josh";
+    float bedSize = 9.23f;
+    std::string floor = "maple";
+    int floorSpace = 43;
+    int lastCleaned = 14;
+    int slept = 480;
+    int piecesOfFurnature = 6;
     Bedroom();
-    std::string name;
-    float bedSize;
-    std::string floor;
-    int floorSpace;
-    int lastCleaned;
-    int slept;
-    int piecesOfFurnature;
 
     struct Bed
     {
+        int height = 14;
+        int pillows = 4;
+        std::string headboardMaterial = "maple";
+        std::string size = "full";
+        int bedAge = 3;
+        std::string lastInBed = "jeff";
+        std::string company = "tempurpedic";
+        int sheetsLastCleaned = 14;
         Bed();
-        int height;
-        int pillows;
-        std::string headboardMaterial;
-        std::string size;
-        int bedAge;
-        std::string lastInBed;
-        std::string company;
-        int sheetsLastCleaned;
 
         void makeBed ( bool newSheets = true);
         void sleepInBed (std::string sleeper = "jeff");
         void newMatress ( std::string brand = "tempurpedic");
+        void printLastInBed()
+        {
+            std::cout << "Last in bed was " << lastInBed << "\n";
+        }
     };
     void sleepIn ( int timeAwake = 843, int timeAsleep = 98);
     void clean ( bool vacumed = true );
     void rearange ( int newFurnature = 1 );
 };
 
-Bedroom::Bed::Bed()
-{
-    height = 14;
-    pillows = 4;
-    headboardMaterial = "maple";
-    size = "full";
-    bedAge = 3;
-    lastInBed = "jeff";
-    company = "tempurpedic";
-    sheetsLastCleaned = 14;
-}
+Bedroom::Bed::Bed(){}
 
 Bedroom::Bedroom()
 {
@@ -321,28 +293,20 @@ void Bedroom::rearange( int newFurnature )
 
 struct Kitchen
 {
+    int cabinets = 18;
+    std::string cookingUtilities = "pan";
+    int dirtyDishes = 8;
+    int fridgeSpace = 48;
+    int windows = 9;
+    bool stoveToBeCleaned = true;
     Kitchen();
-    int cabinets;
-    std::string cookingUtilities;
-    int dirtyDishes;
-    int fridgeSpace;
-    int windows;
-    bool stoveToBeCleaned;
 
     void cook ( bool stoveUsed = true );
     void fridgeRestock ( int foodsize = 8 );
     void clean ( bool dishwasherRan = false );
 };
 
-Kitchen::Kitchen()
-{
-    cabinets = 18;
-    cookingUtilities = "pan";
-    dirtyDishes = 8;
-    fridgeSpace = 48;
-    windows = 9;
-    stoveToBeCleaned = true;
-}
+Kitchen::Kitchen(){}
 
 void Kitchen::cook( bool stoveUsed ) 
 {
@@ -367,16 +331,16 @@ void Kitchen::clean( bool dishwasherRan )
 
 struct Bathroom
 {
+    int mirrorSize = 8;
+    int numSink = 2;
+    int counterItems = 8;
+    int timeSinceCleaned = 5;
+    int toiletHeight = 17;
+    int sinceShowerUsed = 0;
+    int sinceToiletUsed = 3;
+    bool changeSeat = false;
+    bool readyForGuests = false;
     Bathroom();
-    int mirrorSize;
-    int numSink;
-    int counterItems;
-    int timeSinceCleaned;
-    int toiletHeight;
-    int sinceShowerUsed;
-    int sinceToiletUsed;
-    bool changeSeat;
-    bool readyForGuests;
 
     struct Shower
     {
@@ -397,18 +361,7 @@ struct Bathroom
     void clean ( bool bleachUsed = false );
 };
 
-Bathroom::Bathroom()
-{
-    mirrorSize = 8;
-    numSink = 2;
-    counterItems = 8;
-    timeSinceCleaned = 5;
-    toiletHeight = 17;
-    sinceShowerUsed = 0;
-    sinceToiletUsed = 3;
-    changeSeat = false;
-    readyForGuests = false;
-}
+Bathroom::Bathroom(){}
 
 Bathroom::Shower::Shower()
 {
@@ -462,32 +415,26 @@ void Bathroom::clean( bool bleachUsed )
 
 struct LivingRoom
 {
+    int sittingPlaces = 3;
+    int TVsize = 42;
+    int windows = 3;
+    std::string wallColor = "red";
+    int doors = 3;
+    int piecesOfFurnature = 5;
+    bool sataliteWatched = false;
+    int timeSincePainted = 43;
     LivingRoom();
-    int sittingPlaces;
-    int TVsize;
-    int windows;
-    std::string wallColor;
-    int doors;
-    int piecesOfFurnature;
-    bool sataliteWatched;
-    int timeSincePainted;
 
     void useTV ( bool netflix = true );
     void paintRoom ( bool newcolor = false );
     void rearange ( int newfurnature = 1);
+    void printOcupants()
+    {
+        std::cout << "This living room fits " << sittingPlaces << " people\n";
+    }
 };
 
-LivingRoom::LivingRoom()
-{
-    sittingPlaces = 3;
-    TVsize = 42;
-    windows = 3;
-    wallColor = "red";
-    doors = 3;
-    piecesOfFurnature = 5;
-    sataliteWatched = false;
-    timeSincePainted = 43;
-}
+LivingRoom::LivingRoom(){}
 
 void LivingRoom::useTV( bool netflix ) 
 {
@@ -509,7 +456,6 @@ void LivingRoom::rearange( int newFurnature )
 
 struct Garage
 {
-    Garage();
     int carSpots = 1;
     int doors = 1;
     int windows = 8;
@@ -517,22 +463,14 @@ struct Garage
     int lights = 2;
     int whereToPark = 1;
     int openSource = 2; 
+    Garage();
 
     void parkCar ( bool spotAOpen = true, bool spotBOpen = true, bool spotCOpen = true );
     void doorOpen ( bool fromCar = true );
     void altUsage ( std::string garageUsage = "art studio");
 };
 
-Garage::Garage()
-{
-    carSpots = 1;
-    doors = 1;
-    windows = 8;
-    items = 41;
-    lights = 2;
-    whereToPark = 1;
-    openSource = 2; 
-}
+Garage::Garage(){}
 
 void Garage::parkCar( bool spotAOpen, bool spotBOpen, bool spotCOpen ) 
 {
@@ -585,11 +523,12 @@ struct House
     void demolish ( int originalWallsRemaining = 1, int totalWalls = 4 );
 };
 
-House::House()
+House::House() :
+    rooms { 3 },
+    value { 430300 },
+    newWalls { 5 }
 {
-    rooms = 3;
-    value = 430300;
-    newWalls = 5;
+
 }
 
 void House::addRoom( int numNewRooms ) 
@@ -648,11 +587,15 @@ int main()
     blazer.putOn("L", false);
     frontRoom.paintRoom(true);
 
-
-
     std::cout << "Should I clean my Room? " << (myRoom.lastCleaned > 7 ? "Yes" : "No") << "\n";
 
     std::cout << "Did I sleep to long? " << (myRoom.slept > 8 ? "Yes" : "No") << "\n";
 
     std::cout << "good to go!" << std::endl;
+
+    tan.printCondition();
+
+    myBed.printLastInBed();
+
+    frontRoom.printOcupants();
 }
