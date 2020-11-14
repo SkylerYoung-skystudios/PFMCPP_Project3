@@ -34,6 +34,7 @@ struct Bar
     int num = 0; 
     Bar(int n) : num(n) { } 
 };
+
 struct Foo
 {
     Bar scopeLifetimeFunc( int threshold, int startingVal ) //3), 4c) 
@@ -74,11 +75,21 @@ struct Shoe
     std::string color { "white" };
     std::string condition { "good" };
     std::string securingMethod { "velcro" };
+    double percentOfSoleLeft = 100;
     Shoe();
 
     void putOn ( std::string firstShoe = "R", bool leftFirst = true);
     void takeOff ( std::string firstShoe = "R", bool leftFirst = true );
     void throwAway ( bool donate = false );
+    void wearDown(int timesWorn)
+    {
+        for (int i = 0; i <= timesWorn; i += 1)
+        {
+            percentOfSoleLeft -= 0.2;
+        }
+
+        std::cout << "Sole percent left " << percentOfSoleLeft << std::endl;
+    }
 };
 
 Shoe::Shoe(){}
@@ -115,7 +126,7 @@ struct Wurlitzer
     std::string model;
     std::string condition;
     int numKeys;
-    int output;
+    int output = 23;
     bool on;
     Wurlitzer();
 
@@ -125,6 +136,20 @@ struct Wurlitzer
     void printCondition()
     {
        std::cout << "This Wutlizer is in " << condition << " condition\n"; 
+    }
+    int swellVolume(int amount, int time)
+    {
+        int swell = 0;
+        for (int i = 0; i <= time ; i += 1)
+        {
+            swell += 20;
+            if (swell >= amount)
+            {
+                std::cout << "Swell finished" << std::endl;
+                return swell;
+            }
+        }
+        return swell;
     }
 };
 
@@ -166,11 +191,29 @@ struct ElectricBass
     int output = 23;
     int cost = 1544;
     int timeSinceRestrung = 13;
+    bool timeToRestring = false;
     ElectricBass();
 
     void play ( int note =  18 );
     void sold ( int price = 1200 );
     void restring ( bool restring = true );
+    void checkStrings (int timesPlayed)
+    {
+        for (int i = 0; i <= timesPlayed; i += 1)
+        {
+            timeSinceRestrung += 1; 
+        }
+
+        if (timeSinceRestrung > 60)
+        {
+            timeToRestring = true;
+            std::cout << "Time to change strings!" << std::endl;
+        }
+        else
+        {
+            std::cout << "Strings are still good!" << std::endl;
+        }
+    } 
 };
 
 ElectricBass::ElectricBass(){}
@@ -203,15 +246,26 @@ struct City
     int averageAge;
     std::string country;
     bool party1InCharge;
-    int buildingsToBeRepaired;
+    int buildingsToBeRepaired = 10000;
+    bool repairsFinished = false;
     int capital;
 
     void vote (int party1Votes = 13876, int party2Votes = 43786 );
     void naturalDisaster ( int percentOfPropertiesDamaged = 47 );
     void buildTransportation ( int cost = 2433244 );
+    void fixBuildings()
+    {
+        int time = 0;
+        while (buildingsToBeRepaired > 0)
+        {
+            buildingsToBeRepaired -= 2540;
+            time += 1;
+        }
+        std::cout << "Repairs finished in " << time << " years" << std::endl;
+    }
 };
 
-City::City() : population { 4649231 }, size { 34.65f }, GDP { 65569340958.98 }, averageAge { 43 }, country { "New Zeland" }, party1InCharge { true }, buildingsToBeRepaired { 1 }, capital { 14414414 } {}
+City::City() : population { 4649231 }, size { 34.65f }, GDP { 65569340958.98 }, averageAge { 43 }, country { "New Zeland" }, party1InCharge { true }, buildingsToBeRepaired { 100000 }, capital { 14414414 } {}
 
 void City::vote( int party1Votes, int party2Votes ) 
 {
@@ -462,6 +516,7 @@ struct LivingRoom
     {
         std::cout << "This living room fits " << sittingPlaces << " people\n";
     }
+
 };
 
 LivingRoom::LivingRoom(){}
@@ -498,6 +553,7 @@ struct Garage
     void parkCar ( bool spotAOpen = true, bool spotBOpen = true, bool spotCOpen = true );
     void doorOpen ( bool fromCar = true );
     void altUsage ( std::string garageUsage = "art studio");
+
 };
 
 Garage::Garage(){}
@@ -596,7 +652,7 @@ int main()
     Shoe blazer, airforce1;
     Wurlitzer red, tan;
     ElectricBass jaguar, precision;
-    City losAngeles;
+    City losAngeles, seattle;
     Bedroom myRoom, brothersRoom;
     Bedroom::Bed myBed;
     Kitchen cookery;
@@ -628,4 +684,12 @@ int main()
     myBed.printLastInBed();
 
     frontRoom.printOcupants();
+
+    blazer.wearDown(47);
+
+    precision.checkStrings(84);
+
+    seattle.fixBuildings();
+
+    red.output = red.swellVolume(60, 5);
 }
